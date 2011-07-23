@@ -67,7 +67,7 @@ function loadcss(i) {
 
 function loadscript(i) {
     if (i >= libs.length) {
-        setTimeout("canvasify()", 1000);
+        setTimeout("canvasify()", 5000);
         return;
     }
     var script = document.createElement("script");
