@@ -1,7 +1,7 @@
 Using this tool
 ---------------
 - Available as a microbookmarklet!
-- Visit [this link](https://raw.github.com/minghan/pixelweb/master/bookmark.html).
+- Visit [this link](http://dl.dropbox.com/u/1523897/pixelweb_bookmark.html).
 - Go any webpage, click on the microbookmarklet... and wait while your webpage pixelizes (may take up to 30s).
 
 
