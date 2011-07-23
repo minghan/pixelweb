@@ -1,6 +1,13 @@
 /*
 
-javascript:(function(){ document.body.appendChild(document.createElement("script").src = "file.js"; })();
+Microbookmarklet
+----------------
+
+javascript: var s = document.createElement("script");
+s.type="text/javascript";
+document.body.appendChild(s);
+s.src="https://raw.github.com/minghan/pixelweb/master/pixelweb.js";
+void(0);
 
 */
 
