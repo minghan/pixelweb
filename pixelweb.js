@@ -12,7 +12,8 @@ void(0);
 */
 
 // var PX_PATH = "file:///Users/minghan/Documents/hanworks/pixelweb/";
-var PX_PATH = "http://127.0.0.1:8000/~minghan/pixelweb/";
+// var PX_PATH = "http://127.0.0.1:8000/~minghan/pixelweb/";
+var PX_PATH = "https://raw.github.com/minghan/pixelweb/master/";
 
 var libs = [
     PX_PATH + "lib/jquery-1.6.2.min.js",
