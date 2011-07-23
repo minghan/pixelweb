@@ -4,12 +4,15 @@ javascript:(function(){ document.body.appendChild(document.createElement("script
 
 */
 
-var PX_PATH = "file:///Users/minghan/Documents/hanworks/pixelweb/";
+// var PX_PATH = "file:///Users/minghan/Documents/hanworks/pixelweb/";
+var PX_PATH = "http://127.0.0.1:8000/~minghan/pixelweb/";
 
 var libs = [
     PX_PATH + "lib/jquery-1.6.2.min.js",
-    PX_PATH + "lib/html2canvas.min.js"
-    // PX_PATH + "lib/jquery.plugin.html2canvas.js"
+    // PX_PATH + "lib/html2canvas.js",
+    PX_PATH + "lib/html2canvas.min.js",
+    PX_PATH + "lib/jquery.plugin.html2canvas.js",
+    PX_PATH + "lib/close-pixelate.js"
 ];
 
 var css = [
@@ -17,9 +20,12 @@ var css = [
 ];
 
 function canvasify() {
-    // alert($('body').html());
-    // $('body').html2canvas();
 
+    $('body').html2canvas();
+
+}
+
+/*
     var div = document.createElement("div");
     $(div).width($(window).width());
     $(div).height($(window).height());
@@ -29,58 +35,17 @@ function canvasify() {
     $(div).css('left', '0');
     div.id = "pixelwebRect";
     document.body.appendChild(div);
+*/
 
 
-
-    var object = $.extend({},{
-        logging: false,
-        proxyUrl: "http://html2canvas.appspot.com/", // running html2canvas-python proxy
-        ready: function(renderer) {
-            
-            var finishTime = new Date();
-           // console.log((finishTime.getTime()-timer)/1000);
-            
-
-            document.body.appendChild(renderer.canvas);
-            
-            
-            
-            var canvas = $(renderer.canvas);
-            canvas.css('position','absolute')
-            .css('left',0).css('top',0);
-            
-
-            
-           // $('body').append(canvas);
-            $(canvas).siblings().toggle();
-            
-            throwMessage('Screenshot created in '+ ((finishTime.getTime()-timer)/1000) + " seconds<br />Total of "+renderer.numDraws+" draws performed",4000);
-            
-            
-            $(window).click(function(){
-                if (!canvas.is(':visible')){
-                    $(canvas).toggle().siblings().toggle();  
-                    throwMessage("Canvas Render visible");
-                } else{
-                    $(canvas).siblings().toggle();  
-                    $(canvas).toggle();
-                    throwMessage("Canvas Render hidden");
-                }
-                
-      
-            });
-        }
-        
-    },options)
-    
-    new html2canvas(this.get(0), object);
-
-}
 
 // load css
 
 function loadcss(i) {
-    if (i >= css.length) return;
+    if (i >= css.length) {
+        loadscript(0);
+        return;
+    }
     var ref = document.createElement("link");
     ref.rel = "stylesheet";
     ref.type = "text/css";
@@ -94,17 +59,19 @@ function loadcss(i) {
 
 function loadscript(i) {
     if (i >= libs.length) {
+        setTimeout("canvasify()", 500);
         return;
     }
     var script = document.createElement("script");
+    console.log("Loading:", libs[i]);
     script.src = libs[i];
     script.type = "text/javascript";
-    script.onload = loadscript(i+1); // wait until loaded
+    script.onload = setTimeout("loadscript(" + String(i+1) + ")", 0); // wait until loaded
     document.body.appendChild(script);
 }
 
 loadcss(0);
-loadscript(0);
-setTimeout("canvasify()", 500);
+
+
 
 
