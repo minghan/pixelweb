@@ -1,0 +1,6 @@
+#pixelwebRect {
+	background-color: gray;
+	opacity: 0.3;
+	border: 1px solid black;
+	position: absolute;
+}
